@@ -106,5 +106,17 @@ public class Pong extends Application {
             playerOneScore++;
             startedGame = false;
         }
+
+        // ball speed increase
+        if( ((ballXPosition + BALL_RADIUS > playerTwoXPosition) && ballYPosition >= playerTwoYPosition && ballYPosition <= playerTwoYPosition + PLAYER_HEIGHT) ||
+                ((ballXPosition < playerOneXPosition + PLAYER_WIDTH) && ballYPosition >= playerOneYPosition && ballYPosition <= playerOneYPosition + PLAYER_HEIGHT)) {
+            yBallSpeed += 1 *  Math.signum(yBallSpeed);
+            xBallSpeed += 1 * Math.signum(xBallSpeed);
+            xBallSpeed *= -1;
+            yBallSpeed *= -1;
+        }
+
+        // draw the score
+        gc.fillText(playerOneScore + "\t\t\t\t\t\t\t\t" + playerTwoScore, WINDOW_WIDTH / 2, 100);
     }
 }
