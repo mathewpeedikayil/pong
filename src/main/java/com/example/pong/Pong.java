@@ -51,5 +51,30 @@ public class Pong extends Application {
     private void run(GraphicsContext gc) {
         gc.setFill(Color.BLACK); // background colour
         gc.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+
+        gc.setFill(Color.WHITE);
+        gc.setFont(Font.font(21));
+
+        // game logic
+        if(startedGame) {
+            // ball movement on X and Y axis
+            ballXPosition += xBallSpeed;
+            ballYPosition += yBallSpeed;
+
+            // player two (computer) who follows the ball
+            if(ballXPosition < WINDOW_WIDTH - WINDOW_WIDTH / 4) {
+                playerTwoYPosition = ballYPosition - PLAYER_HEIGHT / 2;
+            } else {
+                playerTwoYPosition = ballYPosition > playerTwoYPosition + PLAYER_HEIGHT / 2 ? playerTwoYPosition + 1 : playerTwoYPosition - 1;
+            }
+
+            // draw the ball
+            gc.fillOval(ballXPosition, ballYPosition, BALL_RADIUS, BALL_RADIUS);
+        } else {
+            // start text
+            gc.setStroke(Color.WHITE);
+            gc.setTextAlign(TextAlignment.CENTER);
+            gc.strokeText("on Click", WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+        }
     }
 }
