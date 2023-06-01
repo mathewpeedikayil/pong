@@ -16,6 +16,9 @@ import javafx.util.Duration;
 
 public class Pong extends Application {
 
+    private static final String WELCOME_MSG = "Welcome to Pong!";
+    private static final String PLAY_GAME_TXT = "Play Game";
+
     private boolean startedGame;
     private static final int WINDOW_HEIGHT = 600;
     private static final int WINDOW_WIDTH = 800;
@@ -34,7 +37,7 @@ public class Pong extends Application {
     private double playerTwoYPosition = WINDOW_HEIGHT / 2;
 
     public void start(Stage stage) throws Exception {
-        stage.setTitle("Welcome to Pong!");
+        stage.setTitle(WELCOME_MSG);
         Canvas canvas = new Canvas(WINDOW_WIDTH, WINDOW_HEIGHT);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         Timeline tl = new Timeline(new KeyFrame(Duration.millis(10), e -> run(gc)));
@@ -74,7 +77,7 @@ public class Pong extends Application {
             // start text
             gc.setStroke(Color.WHITE);
             gc.setTextAlign(TextAlignment.CENTER);
-            gc.strokeText("Play Game", WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+            gc.strokeText(PLAY_GAME_TXT, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 
             // ball start position reset to middle when ball goes out of window
             ballXPosition = WINDOW_WIDTH / 2;
