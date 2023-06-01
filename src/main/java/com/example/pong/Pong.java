@@ -74,7 +74,7 @@ public class Pong extends Application {
             // start text
             gc.setStroke(Color.WHITE);
             gc.setTextAlign(TextAlignment.CENTER);
-            gc.strokeText("on Click", WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+            gc.strokeText("Play Game", WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 
             // ball start position reset to middle when ball goes out of window
             ballXPosition = WINDOW_WIDTH / 2;
@@ -118,5 +118,9 @@ public class Pong extends Application {
 
         // draw the score
         gc.fillText(playerOneScore + "\t\t\t\t\t\t\t\t" + playerTwoScore, WINDOW_WIDTH / 2, 100);
+
+        // draw the players
+        gc.fillRect(playerOneXPosition, playerOneYPosition, PLAYER_WIDTH, PLAYER_HEIGHT);
+        gc.fillRect(playerTwoXPosition, playerTwoYPosition, PLAYER_WIDTH, PLAYER_HEIGHT);
     }
 }
