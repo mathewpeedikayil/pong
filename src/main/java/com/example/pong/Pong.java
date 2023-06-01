@@ -1,3 +1,15 @@
+/**
+ * Pong.java
+ * Created on 01/06/2023
+ * Last modified on 01/06/2023
+ * No copyright
+ * This class represents the game of pong.
+ * Version History: 1.0 - only pure code; 2.0 - comments added.
+ *
+ * @author Mathew Philip Peedikayil
+ * @version 2.0
+ */
+
 package com.example.pong;
 
 import java.util.Random;
