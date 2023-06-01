@@ -49,6 +49,7 @@ public class Pong extends Application {
     }
 
     private void run(GraphicsContext gc) {
-
+        gc.setFill(Color.BLACK); // background colour
+        gc.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 }
