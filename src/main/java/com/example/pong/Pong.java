@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Pong extends Application {
 
@@ -32,9 +33,22 @@ public class Pong extends Application {
     private double playerOneYPosition = WINDOW_HEIGHT / 2;
     private double playerTwoYPosition = WINDOW_HEIGHT / 2;
 
-
-    @Override
     public void start(Stage stage) throws Exception {
+        stage.setTitle("Welcome to Pong!");
+        Canvas canvas = new Canvas(WINDOW_WIDTH, WINDOW_HEIGHT);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        Timeline tl = new Timeline(new KeyFrame(Duration.millis(10), e -> run(gc)));
+        tl.setCycleCount(Timeline.INDEFINITE);
+
+        //  game controls
+        canvas.setOnMouseMoved(e -> playerOneYPosition = e.getY()); // stick movement
+        canvas.setOnMouseClicked(e -> startedGame = true);
+        stage.setScene(new Scene(new StackPane(canvas)));
+        stage.show();
+        tl.play();
+    }
+
+    private void run(GraphicsContext gc) {
 
     }
 }
