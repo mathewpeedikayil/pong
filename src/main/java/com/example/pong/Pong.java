@@ -78,9 +78,23 @@ public class Pong extends Application {
             ballYPosition += yBallSpeed;
 
             // player two (computer) who follows the ball
+            // checks if the x-coordinate of the ball (ballXPosition) is less than
+            // three-fourths (WINDOW_WIDTH - WINDOW_WIDTH / 4) of the window width.
             if(ballXPosition < WINDOW_WIDTH - WINDOW_WIDTH / 4) {
+                // updates the playerTwoYPosition to be aligned with the center of the ball vertically.
+                // subtracts half of the paddle's height (PLAYER_HEIGHT / 2) from the y-coordinate of the ball (ballYPosition).
                 playerTwoYPosition = ballYPosition - PLAYER_HEIGHT / 2;
             } else {
+                // adjusts the playerTwoYPosition based on the position of the ball.
+
+
+                // if the y-coordinate of the ball (ballYPosition) is greater than
+                // the current playerTwoYPosition plus half of the paddle's height (PLAYER_HEIGHT / 2),
+                // then playerTwoYPosition is incremented by 1 (playerTwoYPosition + 1).
+
+                // if the y-coordinate of the ball is less than
+                // the current playerTwoYPosition plus half of the paddle's height,
+                // then playerTwoYPosition is decremented by 1 (playerTwoYPosition - 1).
                 playerTwoYPosition = ballYPosition > playerTwoYPosition + PLAYER_HEIGHT / 2 ? playerTwoYPosition + 1 : playerTwoYPosition - 1;
             }
 
