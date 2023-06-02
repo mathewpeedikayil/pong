@@ -141,7 +141,7 @@ public class Pong extends Application {
         if(
                 // 1st condition
                 // checks if the ball's right most point (ballXPosition + BALL_RADIUS) is greater than
-                // the x-coordinate of player two's paddle (playerTwoXPosition). It
+                // the x-coordinate of player two's paddle (playerTwoXPosition).
                 // checks if the ball's y-coordinate (ballYPosition) is within the vertical range
                 // of player two's paddle (playerTwoYPosition to playerTwoYPosition + PLAYER_HEIGHT).
 
