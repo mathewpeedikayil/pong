@@ -30,13 +30,12 @@ public class Pong extends Application {
 
     private static final String WELCOME_MSG = "Welcome to Pong!";
     private static final String PLAY_GAME_TXT = "Play Game";
-
-    private boolean startedGame;
     private static final int WINDOW_HEIGHT = 600;
     private static final int WINDOW_WIDTH = 800;
     private static final int PLAYER_HEIGHT = 100;
     private static final int PLAYER_WIDTH = 15;
     private static final double BALL_RADIUS = 15;
+    private boolean startedGame;
     private int yBallSpeed = 1;
     private int xBallSpeed = 1;
     private double ballXPosition = WINDOW_WIDTH / 2; // ball starts from the center
