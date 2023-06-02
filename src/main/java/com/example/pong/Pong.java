@@ -1,7 +1,7 @@
 /**
  * Pong.java
  * Created on 01/06/2023
- * Last modified on 01/06/2023
+ * Last modified on 02/06/2023
  * No copyright
  * This class represents the game of pong.
  * Version History: 1.0 - only pure code; 2.0 - comments added.
@@ -39,19 +39,20 @@ public class Pong extends Application {
     private static final double BALL_RADIUS = 15;
     private int yBallSpeed = 1;
     private int xBallSpeed = 1;
-    private double ballXPosition = WINDOW_WIDTH / 2;
-    private double ballYPosition = WINDOW_WIDTH / 2;
+    private double ballXPosition = WINDOW_WIDTH / 2; // ball starts from the center
+    private double ballYPosition = WINDOW_WIDTH / 2; // ball starts from the center
     private int playerOneScore = 0;
     private int playerTwoScore = 0;
     private int playerOneXPosition = 0;
-    private int playerTwoXPosition = WINDOW_WIDTH - PLAYER_WIDTH;
+    private int playerTwoXPosition = WINDOW_WIDTH - PLAYER_WIDTH; // player two placed on the right side of the window
     private double playerOneYPosition = WINDOW_HEIGHT / 2;
     private double playerTwoYPosition = WINDOW_HEIGHT / 2;
 
     public void start(Stage stage) throws Exception {
+        // game window
         stage.setTitle(WELCOME_MSG);
         Canvas canvas = new Canvas(WINDOW_WIDTH, WINDOW_HEIGHT);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        GraphicsContext gc = canvas.getGraphicsContext2D(); // rendering graphics
         Timeline tl = new Timeline(new KeyFrame(Duration.millis(10), e -> run(gc)));
         tl.setCycleCount(Timeline.INDEFINITE);
 
@@ -122,11 +123,31 @@ public class Pong extends Application {
             startedGame = false;
         }
 
-        // ball speed increase
-        if( ((ballXPosition + BALL_RADIUS > playerTwoXPosition) && ballYPosition >= playerTwoYPosition && ballYPosition <= playerTwoYPosition + PLAYER_HEIGHT) ||
-                ((ballXPosition < playerOneXPosition + PLAYER_WIDTH) && ballYPosition >= playerOneYPosition && ballYPosition <= playerOneYPosition + PLAYER_HEIGHT)) {
+        // collisions between the ball and paddles are checked
+        // speed increase takes place
+        if(
+                // 1st condition
+                // checks if the ball's right most point (ballXPosition + BALL_RADIUS) is greater than
+                // the x-coordinate of player two's paddle (playerTwoXPosition). It
+                // checks if the ball's y-coordinate (ballYPosition) is within the vertical range
+                // of player two's paddle (playerTwoYPosition to playerTwoYPosition + PLAYER_HEIGHT).
+
+                // 2nd condition
+                // checks if the ball's leftmost point (the value of ballXPosition) is less than
+                // the sum of the x-coordinate of player one's paddle (playerOneXPosition) and the width of the paddle (PLAYER_WIDTH).
+                // checks if the ball's y-coordinate is within the vertical range of player one's paddle
+                // (playerOneYPosition to playerOneYPosition + PLAYER_HEIGHT).
+                ((ballXPosition + BALL_RADIUS > playerTwoXPosition) && ballYPosition >= playerTwoYPosition && ballYPosition <= playerTwoYPosition + PLAYER_HEIGHT) ||
+                ((ballXPosition < playerOneXPosition + PLAYER_WIDTH) && ballYPosition >= playerOneYPosition && ballYPosition <= playerOneYPosition + PLAYER_HEIGHT)
+        ) {
+            // speed increment of the ball by their respective sign (1 or -1)
+            // to increase the speed of the ball in both x and y directions.
+            // speed of the ball increases as the game progresses
             yBallSpeed += 1 *  Math.signum(yBallSpeed);
             xBallSpeed += 1 * Math.signum(xBallSpeed);
+
+            // reverse the sign of ball speed
+            // the direction of the ball changes after each collision.
             xBallSpeed *= -1;
             yBallSpeed *= -1;
         }
@@ -134,7 +155,7 @@ public class Pong extends Application {
         // draw the score
         gc.fillText(playerOneScore + "\t\t\t\t\t\t\t\t" + playerTwoScore, WINDOW_WIDTH / 2, 100);
 
-        // draw the players
+        // draw the players paddles
         gc.fillRect(playerOneXPosition, playerOneYPosition, PLAYER_WIDTH, PLAYER_HEIGHT);
         gc.fillRect(playerTwoXPosition, playerTwoYPosition, PLAYER_WIDTH, PLAYER_HEIGHT);
     }
